@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BlogApp</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>BLOGAPP</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <header>
+    <ul>
+      <li><a href="http://localhost:3000/blogs/top">TOP</a></li>
+      <li><a href="http://localhost:3000/blogs">記録一覧</a></li>
 
-  <body>
-    <%= yield %>
-  </body>
+    </ul>
+  </header>
+
+<%= yield %>
+
+  <footer>
+    <p>運営会社 株式会社みどり</p>
+    <p>© 1994-2018 Copyright MIDORI Corp.</p>
+  </footer>
+
+</body>
 </html>
