@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   get 'blogs/top' ,to: 'blogs#top'
   resources :blogs do
     collection do
-      post :confirm
+      post :confirms
     end
   end
-
 end
