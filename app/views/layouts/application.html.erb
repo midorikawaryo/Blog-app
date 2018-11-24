@@ -9,15 +9,10 @@
 <body>
 
   <header>
+
     <ul>
       <li><%=link_to "TOP", blogs_top_path  %></li>
       <li><%=link_to "記録一覧", blogs_path %></a></li>
-
-
-      <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-      <% end %>
-
       <% if logged_in? %>
         <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
         <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
@@ -26,6 +21,9 @@
         <li><%= link_to "ログイン", new_session_path %></li>
       <% end %>
     </ul>
+    <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
   </header>
 <%= yield %>
 
