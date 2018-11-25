@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.create(blog_params)
+    @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     if @blog.save
       redirect_to new_blog_path, notice: "ブログを作成しました！"
@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def edit

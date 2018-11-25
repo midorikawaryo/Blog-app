@@ -11,9 +11,13 @@
         <h2><%= blog.title %></h2>
         <p><%= blog.content %></p>
         <div class="blog-links">
-          <%= link_to 'Show', blog, class: 'btn btn-default' %>
-          <%= link_to 'Edit', edit_blog_path(blog), class: 'btn btn-info' %>
-          <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%if @current_user.id == blog.user_id%>
+            <%= link_to '詳細', blog, class: 'btn btn-default' %>
+            <%= link_to '編集', edit_blog_path(blog), class: 'btn btn-info' %>
+            <%= link_to '削除', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to '詳細', blog, class: 'btn btn-default' %>
+          <% end%>
         </div>
         <p>投稿者:<%= blog.user.name %></p>
       </div>
