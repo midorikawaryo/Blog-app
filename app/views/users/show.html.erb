@@ -2,8 +2,11 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
-<%= @favorites_blogs = @user.blog %>
-<% @favorites_blogs.each do |favorites_blog| %>
-<%= favorites_blog %>
-
-<% end %>
+<h3>お気に入りしたブログ</h3>
+<div class="favorites_blogs">
+  <% @favorites_blogs.each do |favorites_blog| %>
+  <p>タイトル：<%= favorites_blog.title %></p>
+  <p>本文：<%= favorites_blog.content %></p>
+  <p>投稿者：<%= favorites_blog.user.name %></p>
+  <% end %>
+</div>
