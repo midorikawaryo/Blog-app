@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :login_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :current_user,
 
   def index
     @blogs = Blog.all
-    login_user
   end
 
   def new
@@ -44,6 +44,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
+    login_user
     redirect_to blogs_path, notice:"ブログを削除しました！"
   end
 

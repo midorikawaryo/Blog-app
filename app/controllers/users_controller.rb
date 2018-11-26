@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+before_action :login_user, only: [ :show, :edit, :update, :destroy]
+
   def new
     @user = User.new
   end
@@ -21,5 +23,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,:password_confirmation)
+  end
+end
+
+def login_user
+  if current_user.nil?
+    redirect_to new_session_path, notice: "ログインしてください"
   end
 end
