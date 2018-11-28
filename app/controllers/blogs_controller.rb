@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :login_user, only: [:index, :show, :edit, :update, :destroy]
-  before_action :current_user,
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @blogs = Blog.all
@@ -44,7 +44,6 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    login_user
     redirect_to blogs_path, notice:"ブログを削除しました！"
   end
 
@@ -70,6 +69,14 @@ class BlogsController < ApplicationController
   def login_user
     if current_user.nil?
       redirect_to new_session_path, notice: "ログインしてください"
+    end
+  end
+
+  def ensure_correct_user
+    @blog = Blog.find_by(id:params[:id])
+    if @blog.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to blogs_path
     end
   end
 
