@@ -16,9 +16,9 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
-    @blog.user_id = current_user.id
+    @blog = current_user.blogs.build(blog_params)
     if @blog.save
+      BlogMailer.blog_mail(@blog).deliver
       redirect_to new_blog_path, notice: "ブログを作成しました！"
     else
       render 'new'
@@ -75,7 +75,7 @@ class BlogsController < ApplicationController
   def ensure_correct_user
     @blog = Blog.find_by(id:params[:id])
     if @blog.user_id != @current_user.id
-      flash[:notice] = "権限がありません"
+      flash[:notice] = "権限がありません！"
       redirect_to blogs_path
     end
   end
