@@ -6,13 +6,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
   <header>
-
     <ul>
       <li><%=link_to "TOP", blogs_top_path  %></li>
-      <li><%=link_to "記録一覧", blogs_path %></a></li>
+      <li><%=link_to "記録一覧", blogs_path %></li>
       <% if logged_in? %>
         <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
         <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
@@ -25,7 +25,8 @@
     <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
   </header>
-<%= yield %>
+
+  <%= yield %>
 
   <footer>
     <p>運営会社 株式会社みどり</p>
@@ -33,4 +34,5 @@
   </footer>
 
 </body>
+
 </html>

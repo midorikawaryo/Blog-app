@@ -60,3 +60,6 @@ gem 'binding_of_caller'
 group :development do
   gem 'letter_opener_web'
 end
+gem 'faker'
+gem 'carrierwave'
+gem 'mini_magick'

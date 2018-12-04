@@ -1,6 +1,10 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
+<p>
+  <strong>プロフ画像:</strong>
+  <%= image_tag @user.image %>
+</p>
 
 <h3>お気に入りしたブログ</h3>
 <div class="favorites_blogs">

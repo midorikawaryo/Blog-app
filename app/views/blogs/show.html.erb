@@ -2,6 +2,10 @@
 <p>タイトル: <%= @blog.title %></p>
 <p>内容: <%= @blog.content %></p>
 <p>投稿者: <%= @blog.user.name %></p>
+<p>
+  <strong>画像:</strong>
+  <%= image_tag @blog.image %>
+</p>
 
 <% unless @blog.user_id == current_user.id %>
   <% if @favorite.present? %>
@@ -9,4 +13,5 @@
   <% else %>
     <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
+
 <% end %>
